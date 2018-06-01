@@ -115,12 +115,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Dynamic.cpp" />
     <ClCompile Include="FullSearch.cpp" />
     <ClCompile Include="FullSearchOptimized.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Solver.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Dynamic.h" />
     <ClInclude Include="FullSearch.h" />
     <ClInclude Include="FullSearchOptimized.h" />
     <ClInclude Include="Package.h" />
