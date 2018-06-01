@@ -4,6 +4,7 @@
 #include <random>
 #include <time.h>
 #include "FullSearch.h"
+#include "FullSearchOptimized.h"
 
 Package* generate(int n) {
 	Package* packages = new Package[n];
@@ -17,12 +18,12 @@ Package* generate(int n) {
 int main() {
 	srand(time(nullptr));
 
-	int n = 1000;
+	int n = 100;
 	Package* packages = generate(n);
 	for (int i = 0; i < n; i++) {
 		cout << i << ": Size:" << packages[i].size << " Value:" << packages[i].value << endl;
 	}
-	FullSearch f;
+	FullSearchOptimized f;
 	int maxValue = -1;
 	bool* solution = f.solve(packages, n, 1000, maxValue);
 	cout << "Max: " << maxValue << endl;

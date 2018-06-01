@@ -1,18 +1,18 @@
 #pragma once
 #include "Solver.h"
 #include <list>
-#include <stack>
 
 using namespace std;
 
-class FullSearch :
+class FullSearchOptimized :
 	public Solver {
 public:
-	FullSearch();
-	~FullSearch();
+	FullSearchOptimized();
+	~FullSearchOptimized();
 
 	virtual bool* solve(Package* packages, int n, int b, int& maxValue) override;
+
 private:
-	bool* f(Package* packages, int b, int n, list<bool>& path, int i, int& value);
+	bool* f(Package* packages, int b, int n, list<bool>& path, int i, int& value, int sum);
 };
 
