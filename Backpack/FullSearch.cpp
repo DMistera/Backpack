@@ -15,6 +15,10 @@ bool* FullSearch::solve(Package* packages, int n, int b, int& maxValue) {
 	return f(packages, b, n, path, 0, maxValue);
 }
 
+std::string FullSearch::getName() {
+	return "Pelny przeglad";
+}
+
 bool* FullSearch::f(Package* packages, int b, int n, list<bool>& path, int i, int& value) {
 	if (i == n) {
 		bool* solution = new bool[n];

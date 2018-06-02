@@ -14,6 +14,10 @@ bool* FullSearchOptimized::solve(Package* packages, int n, int b, int& maxValue)
 	return f(packages, b, n, path, 0, maxValue, 0);
 }
 
+std::string FullSearchOptimized::getName() {
+	return "Pelny przeglad z wykluczaniem";
+}
+
 bool* FullSearchOptimized::f(Package* packages, int b, int n, list<bool>& path, int i, int& value, int sum) {
 	if (i == n) {
 		bool* solution = new bool[n];

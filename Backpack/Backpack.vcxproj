@@ -120,6 +120,7 @@
     <ClCompile Include="FullSearchOptimized.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Solver.cpp" />
+    <ClCompile Include="Writer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Dynamic.h" />
@@ -127,6 +128,7 @@
     <ClInclude Include="FullSearchOptimized.h" />
     <ClInclude Include="Package.h" />
     <ClInclude Include="Solver.h" />
+    <ClInclude Include="Writer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -11,7 +11,10 @@ public:
 	~Dynamic();
 
 	virtual bool* solve(Package* packages, int n, int b, int& maxValue) override;
+
+	virtual string getName() override;
+
 private:
-	int f(Package* packages, int i, int l, list<int>& solution);
+	int getIndex(int b, int i, int l);
 };
 
