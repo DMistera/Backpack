@@ -42,6 +42,7 @@ bool* GH2::solve(Package* packages, int n, int b, int& maxValue) {
 		pack2[j].key = j;
 	}
 	QS(pack2, 0, n - 1);
+	maxValue = 0;
 	while (s + pack2[i].size < b)
 	{
 		s += pack2[i].size;
