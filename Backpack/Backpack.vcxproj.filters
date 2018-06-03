@@ -33,6 +33,18 @@
     <ClCompile Include="Writer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Random.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GH2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GH3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GH4.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Package.h">
@@ -51,6 +63,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Writer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Random.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GH2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GH3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GH4.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
