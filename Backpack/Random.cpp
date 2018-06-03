@@ -16,6 +16,7 @@ bool* Random::solve(Package* packages, int n, int b, int& maxValue) {
 	while (s + packages[i].size < b)
 	{
 		s += packages[i].size;
+		maxValue += packages[i].value;
 		solution[i++] = true;
 	}
 	return solution;

@@ -92,13 +92,13 @@ int main() {
 		else {
 			step = 25;
 		}
-		int randValue = -1;
+		int randValue = 0;
 		randTime = rand.solveAndTime(data, n, b, randValue);
-		int gh2Value = -1;
+		int gh2Value = 0;
 		gh2Time = gh2.solveAndTime(data, n, b, gh2Value);
-		int gh3Value = -1;
+		int gh3Value = 0;
 		gh3Time = gh3.solveAndTime(data, n, b, gh3Value);
-		int gh4Value = -1;
+		int gh4Value = 0;
 		gh4Time = gh4.solveAndTime(data, n, b, gh4Value);
 		int pdValue = -1;
 		pdTime = pd.solveAndTime(data, n, b, pdValue);

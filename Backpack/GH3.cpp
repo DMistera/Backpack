@@ -45,6 +45,7 @@ bool* GH3::solve(Package* packages, int n, int b, int& maxValue) {
 	while (s + pack2[i].size < b)
 	{
 		s += pack2[i].size;
+		maxValue += pack2[i].value;
 		solution[pack2[i++].key] = true;
 	}
 	return solution;
