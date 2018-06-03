@@ -13,9 +13,11 @@ Random::~Random() {
 bool* Random::solve(Package* packages, int n, int b, int& maxValue) {
 	int i=0,s=0;
 	bool* solution = new bool[n];
+	maxValue = 0;
 	while (s + packages[i].size < b)
 	{
 		s += packages[i].size;
+		maxValue += packages[i].value;
 		solution[i++] = true;
 	}
 	return solution;
