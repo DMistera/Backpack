@@ -11,6 +11,23 @@
 #include "GH4.h"
 #include "Dynamic.h"
 
+class ErrorCalculator {
+public:
+	void add(int pdValue, int ghValue) {
+		if (ghValue != 0) {
+			float v = 100.0*(float)(pdValue - ghValue) / (float)pdValue;
+			sum += v;
+			count++;
+		}
+	}
+	void print(string name) {
+		float v = sum / (float)count;
+		cout << name << " error: " << v << endl;
+	}
+private:
+	float sum = 0;
+	int count = 0;
+};
 
 Package* generate(int n) {
 	Package* packages = new Package[n];
@@ -73,12 +90,17 @@ int main() {
 	GH3 gh3;
 	GH4 gh4;
 
+	ErrorCalculator gh1Err;
+	ErrorCalculator gh2Err;
+	ErrorCalculator gh3Err;
+	ErrorCalculator gh4Err;
+
 	int measures = 30;
 	int step = 1;
 	int n = 1;
 	while (pdTime < 3000 * 1000) {
 		Package* data = generate(n);
-		int b = getB(data, n, 0.5f);
+		int b = getB(data, n, 0.75f);
 
 		int bf1Value = -1;
 		if (bf1Time < 3000 * 1000) {
@@ -92,20 +114,33 @@ int main() {
 		else {
 			step = 25;
 		}
-		int randValue = -1;
-		randTime = rand.solveAndTime(data, n, b, randValue);
-		int gh2Value = -1;
-		gh2Time = gh2.solveAndTime(data, n, b, gh2Value);
-		int gh3Value = -1;
-		gh3Time = gh3.solveAndTime(data, n, b, gh3Value);
-		int gh4Value = -1;
-		gh4Time = gh4.solveAndTime(data, n, b, gh4Value);
 		int pdValue = -1;
 		pdTime = pd.solveAndTime(data, n, b, pdValue);
+		int randValue = -1;
+		randTime = rand.solveAndTime(data, n, b, randValue);
+		gh1Err.add(pdValue, randValue);
+		int gh2Value = -1;
+		gh2Time = gh2.solveAndTime(data, n, b, gh2Value);
+		gh2Err.add(pdValue, gh2Value);
+		int gh3Value = -1;
+		gh3Time = gh3.solveAndTime(data, n, b, gh3Value);
+		gh3Err.add(pdValue, gh3Value);
+		int gh4Value = -1;
+		gh4Time = gh4.solveAndTime(data, n, b, gh4Value);
+		gh4Err.add(pdValue, gh4Value);
+
+		if (gh2Value == -1 || gh3Value == -1 || gh4Value == -1) {
+			cout << "Max value not calculated" << endl;
+		}
 
 		cout << "Finished for n = " << n << endl;
 		n += step;
 	}
+
+	gh1Err.print("Random");
+	gh2Err.print("Min");
+	gh3Err.print("Max");
+	gh4Err.print("Ratio");
 
 	bf1.write();
 	bf2.write();
