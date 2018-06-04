@@ -1,6 +1,6 @@
 #include "Writer.h"
 #include <fstream>
-
+#include <iomanip> 
 
 Writer::Writer() {
 }
@@ -20,7 +20,7 @@ void Writer::write(string filename) {
 	ofstream file;
 	file.open(filename + ".txt");
 	for (Node n : nodes) {
-		file << n.argument << ":" << n.value << ";" << endl;
+		file << n.argument << ":" << std::setprecision(9)<< n.value << ";" << endl;
 	}
 	file.close();
 }
