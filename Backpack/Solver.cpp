@@ -17,8 +17,8 @@ long Solver::solveAndTime(Package* packages, int n, int b, int& maxValue) {
 	return time;
 }
 
-void Solver::write() {
-	writer.write(getName() + ".txt");
+void Solver::write(string add) {
+	writer.write("output\\" + getName() + add + ".txt");
 }
 
 Solver::~Solver() {

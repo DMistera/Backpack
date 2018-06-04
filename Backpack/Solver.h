@@ -8,7 +8,7 @@ public:
 	long solveAndTime(Package* packages, int n, int b, int& maxValue);
 	virtual bool* solve(Package* packages, int n, int b, int& maxValue) = 0;
 	virtual string getName() = 0;
-	void write();
+	void write(string add);
 	~Solver();
 protected:
 	int evaluate(Package* packages, int b, int n, bool* solution);

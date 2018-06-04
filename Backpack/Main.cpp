@@ -82,13 +82,13 @@ int main() {
 	long gh4Time = 0;
 
 
-	FullSearch bf1;
-	FullSearchOptimized bf2;
-	Dynamic pd;
-	Random rand;
-	GH2 gh2;
-	GH3 gh3;
-	GH4 gh4;
+	FullSearch bf1[3];
+	FullSearchOptimized bf2[3];
+	Dynamic pd[3];
+	Random rand[3];
+	GH2 gh2[3];
+	GH3 gh3[3];
+	GH4 gh4[3];
 
 	ErrorCalculator gh1Err;
 	ErrorCalculator gh2Err;
@@ -99,38 +99,41 @@ int main() {
 	int step = 1;
 	int n = 1;
 	while (pdTime < 3000 * 1000) {
-		Package* data = generate(n);
-		int b = getB(data, n, 0.75f);
+		for (int i = 0; i < 3; i++) {
+			Package* data = generate(n);
+			float percent = (i + 1)*0.25f;
+			int b = getB(data, n, percent);
 
-		int bf1Value = -1;
-		if (bf1Time < 3000 * 1000) {
-			bf1Time = bf1.solveAndTime(data, n, b, bf1Value);
-		}
+			int bf1Value = -1;
+			if (bf1Time < 3000 * 1000) {
+				bf1Time = bf1[i].solveAndTime(data, n, b, bf1Value);
+			}
 
-		int bf2Value = -1;
-		if (bf2Time < 3000 * 1000) {
-			bf2Time = bf2.solveAndTime(data, n, b, bf2Value);
-		}
-		else {
-			step = 25;
-		}
-		int pdValue = -1;
-		pdTime = pd.solveAndTime(data, n, b, pdValue);
-		int randValue = -1;
-		randTime = rand.solveAndTime(data, n, b, randValue);
-		gh1Err.add(pdValue, randValue);
-		int gh2Value = -1;
-		gh2Time = gh2.solveAndTime(data, n, b, gh2Value);
-		gh2Err.add(pdValue, gh2Value);
-		int gh3Value = -1;
-		gh3Time = gh3.solveAndTime(data, n, b, gh3Value);
-		gh3Err.add(pdValue, gh3Value);
-		int gh4Value = -1;
-		gh4Time = gh4.solveAndTime(data, n, b, gh4Value);
-		gh4Err.add(pdValue, gh4Value);
+			int bf2Value = -1;
+			if (bf2Time < 3000 * 1000) {
+				bf2Time = bf2[i].solveAndTime(data, n, b, bf2Value);
+			}
+			else {
+				step = 25;
+			}
+			int pdValue = -1;
+			pdTime = pd[i].solveAndTime(data, n, b, pdValue);
+			int randValue = -1;
+			randTime = rand[i].solveAndTime(data, n, b, randValue);
+			gh1Err.add(pdValue, randValue);
+			int gh2Value = -1;
+			gh2Time = gh2[i].solveAndTime(data, n, b, gh2Value);
+			gh2Err.add(pdValue, gh2Value);
+			int gh3Value = -1;
+			gh3Time = gh3[i].solveAndTime(data, n, b, gh3Value);
+			gh3Err.add(pdValue, gh3Value);
+			int gh4Value = -1;
+			gh4Time = gh4[i].solveAndTime(data, n, b, gh4Value);
+			gh4Err.add(pdValue, gh4Value);
 
-		if (gh2Value == -1 || gh3Value == -1 || gh4Value == -1) {
-			cout << "Max value not calculated" << endl;
+			if (gh2Value == -1 || gh3Value == -1 || gh4Value == -1) {
+				cout << "Max value not calculated" << endl;
+			}
 		}
 
 		cout << "Finished for n = " << n << endl;
@@ -142,13 +145,17 @@ int main() {
 	gh3Err.print("Max");
 	gh4Err.print("Ratio");
 
-	bf1.write();
-	bf2.write();
-	pd.write();
-	rand.write();
-	gh2.write();
-	gh3.write();
-	gh4.write();
+	for (int i = 0; i < 3; i++) {
+		float percent = (i + 1)*0.25f;
+		string add = to_string(percent) + "b";
+		bf1[i].write(add);
+		bf2[i].write(add);
+		pd[i].write(add);
+		rand[i].write(add);
+		gh2[i].write(add);
+		gh3[i].write(add);
+		gh4[i].write(add);
+	}
 
 	system("PAUSE");
 	return 0;
